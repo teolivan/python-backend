@@ -13,33 +13,33 @@ for unicorn in unicorns:
 print
 
 unicorn = storage.fetchUnicorn(3)
-print str(unicorn.id) + ': ' + unicorn.name
-print "reportedBy: " + unicorn.reportedBy
-print
+print(str(unicorn.id) + ': ' + unicorn.name)
+print("reportedBy: " + unicorn.reportedBy)
+print()
 
-unicorn.reportedBy = u'Batman'
+unicorn.reportedBy = 'Batman'
 storage.updateUnicorn(unicorn)
 unicorn = storage.fetchUnicorn(3)
-print str(unicorn.id) + ': ' + unicorn.name
-print "reportedBy: " + unicorn.reportedBy
-print
+print(str(unicorn.id) + ': ' + unicorn.name)
+print("reportedBy: " + unicorn.reportedBy)
+print()
 
 unicorn = Unicorn()
-unicorn.name = u'Konstig enhörning'
-unicorn.description = u'Det här är ingen vacker enhörning'
-unicorn.reportedBy = u'Johan'
-unicorn.spottedWhere.name = u'Niagara'
+unicorn.name = 'Konstig enhörning'
+unicorn.description = 'Det här är ingen vacker enhörning'
+unicorn.reportedBy = 'Johan'
+unicorn.spottedWhere.name = 'Niagara'
 unicorn.spottedWhere.lat = 55.609183
 unicorn.spottedWhere.lon = 12.994875
-unicorn.spottedWhen = u'2015-09-22 20:14:00'
-unicorn.image = u'https://pbs.twimg.com/profile_images/512349801929650177/_hfDmaho.jpeg'
+unicorn.spottedWhen = '2015-09-22 20:14:00'
+unicorn.image = 'https://pbs.twimg.com/profile_images/512349801929650177/_hfDmaho.jpeg'
 storage.addUnicorn(unicorn)
 unicorn = storage.fetchUnicorn(5)
-print str(unicorn.id) + ': ' + unicorn.name
-print
+print(str(unicorn.id) + ': ' + unicorn.name)
+print()
 
 unicorns = storage.fetchUnicorns()
-print "Antal enhörningar: " + str(len(unicorns))
+print("Antal enhörningar: " + str(len(unicorns)))
 storage.deleteUnicorn(5)
 unicorns = storage.fetchUnicorns()
-print "Antal enhörningar: " + str(len(unicorns))
+print("Antal enhörningar: " + str(len(unicorns)))
