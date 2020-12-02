@@ -7,39 +7,39 @@ from unicorns.Unicorn import Unicorn
 
 storage.setup()
 
-unicorns = storage.fetchUnicorns()
+unicorns = storage.fetch_unicorns()
 for unicorn in unicorns:
     print str(unicorn.id) + ': ' + unicorn.name
-print
+print("")
 
-unicorn = storage.fetchUnicorn(3)
+unicorn = storage.fetch_unicorn(3)
 print(str(unicorn.id) + ': ' + unicorn.name)
-print("reportedBy: " + unicorn.reportedBy)
-print()
+print("Inrapporterad av: " + unicorn.reported_by)
+print("")
 
-unicorn.reportedBy = 'Batman'
-storage.updateUnicorn(unicorn)
-unicorn = storage.fetchUnicorn(3)
+unicorn.reported_by = 'Batman'
+storage.update_unicorn(unicorn)
+unicorn = storage.fetch_unicorn(3)
 print(str(unicorn.id) + ': ' + unicorn.name)
-print("reportedBy: " + unicorn.reportedBy)
-print()
+print("Inrapporterad av: " + unicorn.reported_by)
+print("")
 
 unicorn = Unicorn()
 unicorn.name = 'Konstig enhörning'
 unicorn.description = 'Det här är ingen vacker enhörning'
-unicorn.reportedBy = 'Johan'
-unicorn.spottedWhere.name = 'Niagara'
-unicorn.spottedWhere.lat = 55.609183
-unicorn.spottedWhere.lon = 12.994875
-unicorn.spottedWhen = '2015-09-22 20:14:00'
+unicorn.reported_by = 'Johan'
+unicorn.spotted_where.name = 'Niagara'
+unicorn.spotted_where.lat = 55.609183
+unicorn.spotted_where.lon = 12.994875
+unicorn.spotted_when = '2015-09-22 20:14:00'
 unicorn.image = 'https://pbs.twimg.com/profile_images/512349801929650177/_hfDmaho.jpeg'
-storage.addUnicorn(unicorn)
-unicorn = storage.fetchUnicorn(5)
+storage.add_unicorn(unicorn)
+unicorn = storage.fetch_unicorn(5)
 print(str(unicorn.id) + ': ' + unicorn.name)
-print()
+print("")
 
-unicorns = storage.fetchUnicorns()
+unicorns = storage.fetch_unicorns()
 print("Antal enhörningar: " + str(len(unicorns)))
-storage.deleteUnicorn(5)
-unicorns = storage.fetchUnicorns()
+storage.delete_unicorn(5)
+unicorns = storage.fetch_unicorns()
 print("Antal enhörningar: " + str(len(unicorns)))

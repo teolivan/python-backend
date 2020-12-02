@@ -22,7 +22,7 @@ def setup():
     conn.commit()
     conn.close()
 
-def fetchUnicorns():
+def fetch_unicorns():
     '''
     Hämtar alla enhörningar i databasen. Returnerar en lista över dem.
     '''
@@ -33,63 +33,66 @@ def fetchUnicorns():
     
     for row in c.execute("SELECT * FROM unicorns"):
         unicorn = Unicorn()
-        unicorn.fromDB(row)
+        unicorn.from_db(row)
         unicorns.append(unicorn)
     
     conn.close()
     return unicorns
     
-def fetchUnicorn(id):
+def fetch_unicorn(id):
     '''
     Hämtar en specifik enhörning i databasen.
     '''
     
     unicorn = Unicorn()
     conn = sqlite3.connect('unicorns.db')
+    conn.text_factory = str
     c = conn.cursor()
     
     rowCount = c.execute("SELECT * FROM unicorns WHERE id = ?", (id, ))
     if (rowCount > 0):
-        unicorn.fromDB(c.fetchone())
+        unicorn.from_db(c.fetchone())
     
     conn.close()
     return unicorn
 
-def addUnicorn(unicorn):
+def add_unicorn(unicorn):
     '''
     Lägger till en enhörning. Inparametern är ett Unicorn-objekt.
     '''
     
     conn = sqlite3.connect('unicorns.db')
+    conn.text_factory = str
     c = conn.cursor()
     
     c.execute("INSERT INTO unicorns (name, description, reportedBy, location, " +
               "lat, lon, spottedWhen, image)"
               "VALUES (:name, :description, :reportedBy, :spottedWhereName, " +
               ":spottedWhereLat, :spottedWhereLon, :spottedWhen, :image)",
-              unicorn.toDict())
+              unicorn.to_dict())
     
     conn.commit()
     conn.close()
 
-def updateUnicorn(unicorn):
+def update_unicorn(unicorn):
     '''
     Uppdaterar till en enhörning. Inparametern är ett Unicorn-objekt.
     '''
     
     conn = sqlite3.connect('unicorns.db')
+    conn.text_factory = str
     c = conn.cursor()
     
     c.execute("UPDATE unicorns SET id=:id, name=:name, description=:description, " +
               "reportedBy=:reportedBy, location=:spottedWhereName, " +
               "lat=:spottedWhereLat, lon=:spottedWhereLon, " +
               "spottedWhen=:spottedWhen, image=:image WHERE id=:id",
-              unicorn.toDict())
+              unicorn.to_dict())
     
     conn.commit()
     conn.close()
 
-def deleteUnicorn(id):
+def delete_unicorn(id):
     '''
     Tar bort en specifik enhörning i databasen.
     '''
