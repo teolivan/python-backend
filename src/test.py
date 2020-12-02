@@ -9,7 +9,7 @@ storage.setup()
 
 unicorns = storage.fetch_unicorns()
 for unicorn in unicorns:
-    print str(unicorn.id) + ': ' + unicorn.name
+    print(str(unicorn.id) + ': ' + unicorn.name)
 print("")
 
 unicorn = storage.fetch_unicorn(3)
