@@ -44,14 +44,16 @@ def fetch_unicorn(id):
     Hämtar en specifik enhörning i databasen.
     '''
     
-    unicorn = Unicorn()
+    unicorn = None
     conn = sqlite3.connect('unicorns.db')
     conn.text_factory = str
     c = conn.cursor()
     
-    rowCount = c.execute("SELECT * FROM unicorns WHERE id = ?", (id, ))
-    if (rowCount > 0):
-        unicorn.from_db(c.fetchone())
+    result = c.execute("SELECT * FROM unicorns WHERE id = ?", (id, ))
+    data = c.fetchone()
+    if (data != None):
+        unicorn = Unicorn()
+        unicorn.from_db(data)
     
     conn.close()
     return unicorn
