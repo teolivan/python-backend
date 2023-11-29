@@ -3,7 +3,7 @@
 import sqlite3
 from unicorns.Unicorn import Unicorn
 
-def setup():
+def setup() -> None:
     '''
     Skapar en databas, tömmer den och fyller på med fyra enhörningar.
     '''
@@ -22,7 +22,7 @@ def setup():
     conn.commit()
     conn.close()
 
-def fetch_unicorns():
+def fetch_unicorns() -> list[Unicorn]:
     '''
     Hämtar alla enhörningar i databasen. Returnerar en lista över dem.
     '''
@@ -39,7 +39,7 @@ def fetch_unicorns():
     conn.close()
     return unicorns
     
-def fetch_unicorn(id):
+def fetch_unicorn(id: int) -> Unicorn:
     '''
     Hämtar en specifik enhörning i databasen.
     '''
@@ -58,7 +58,7 @@ def fetch_unicorn(id):
     conn.close()
     return unicorn
 
-def add_unicorn(unicorn):
+def add_unicorn(unicorn: Unicorn) -> None:
     '''
     Lägger till en enhörning. Inparametern är ett Unicorn-objekt.
     '''
@@ -76,7 +76,7 @@ def add_unicorn(unicorn):
     conn.commit()
     conn.close()
 
-def update_unicorn(unicorn):
+def update_unicorn(unicorn: Unicorn) -> None:
     '''
     Uppdaterar till en enhörning. Inparametern är ett Unicorn-objekt.
     '''
@@ -94,7 +94,7 @@ def update_unicorn(unicorn):
     conn.commit()
     conn.close()
 
-def delete_unicorn(id):
+def delete_unicorn(id: int) -> None:
     '''
     Tar bort en specifik enhörning i databasen.
     '''

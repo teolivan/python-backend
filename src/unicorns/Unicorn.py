@@ -17,15 +17,15 @@ class Unicorn:
     #image = ""
 
     def __init__(self):
-        self.id = 0
-        self.name = ""
-        self.description = ""
-        self.reported_by = ""
-        self.spotted_where = Location()
-        self.spotted_when = 0
-        self.image = ""
+        self.id: int = 0
+        self.name: str = ""
+        self.description: str = ""
+        self.reported_by: str = ""
+        self.spotted_where: Location = Location()
+        self.spotted_when: int = 0
+        self.image: str = ""
     
-    def from_db(self, data):
+    def from_db(self, data: list) -> None:
         '''
         Populerar en enhörning med data från en databasförfrågan.
         '''
@@ -40,7 +40,7 @@ class Unicorn:
         self.spotted_when = data[7]
         self.image = data[8]
     
-    def to_dict(self):
+    def to_dict(self) -> dict:
         '''
         Skapar en dictionary med värden från denna enhörning. Bra att använda
         när man matar in enhörningar i databaser.
