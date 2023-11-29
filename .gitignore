@@ -1,0 +1,8 @@
+.project
+.pydevproject
+.settings/
+src/__pycache__/
+src/unicorns/*.pyc
+src/unicorns/__pycache__/
+venv/
+unicorns.db
