@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from flask import Flask
-app = Flask(__name__)
+from fastapi import FastAPI
 
-@app.route("/")
+app = FastAPI()
+
+@app.get("/")
 def hello():
-    return "Hello World!"
+    return {"Hello": "World!"}
