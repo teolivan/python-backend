@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
-class Location:
+from pydantic import BaseModel
+
+class Location(BaseModel):
     '''
     En enkel klass för att beskriva en plats
     '''
-    
-    def __init__(self):
-        self.name: str = ""
-        self.lat: float = 0
-        self.lon: float = 0
+    name: str = ""
+    lat: float = 0
+    lon: float = 0

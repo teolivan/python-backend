@@ -3,27 +3,20 @@
 from .Location import Location
 import json
 
-class Unicorn:
+from pydantic import BaseModel
+
+class Unicorn(BaseModel):
     '''
     En enkel klass för att representera en enhörning
     '''
     
-    #id = 0
-    #name = ""
-    #description = ""
-    #reportedBy = ""
-    #spottedWhere =  Location()
-    #spottedWhen = 0
-    #image = ""
-
-    def __init__(self):
-        self.id: int = 0
-        self.name: str = ""
-        self.description: str = ""
-        self.reported_by: str = ""
-        self.spotted_where: Location = Location()
-        self.spotted_when: int = 0
-        self.image: str = ""
+    id: int = 0
+    name: str = ""
+    description: str = ""
+    reported_by: str = ""
+    spotted_where: Location  =  Location()
+    spotted_when: str | None = None
+    image: str = ""
     
     def from_db(self, data: list) -> None:
         '''
@@ -40,20 +33,40 @@ class Unicorn:
         self.spotted_when = data[7]
         self.image = data[8]
     
-    def to_dict(self) -> dict:
+    def to_dict(self, nested = False):
         '''
         Skapar en dictionary med värden från denna enhörning. Bra att använda
         när man matar in enhörningar i databaser.
+        
+        Med en liten fix kan vi göra den här lämplig även för JSON-representation.
         '''
         
-        return {
+        if nested:
+            location = {
+                'name': self.spotted_where.name,
+                'lat': self.spotted_where.lat,
+                'lon': self.spotted_where.lon
+            }
+            unicorn =  {
                 'id': self.id,
                 'name': self.name,
                 'description': self.description,
                 'reportedBy': self.reported_by,
-                'spottedWhereName': self.spotted_where.name,
-                'spottedWhereLat': self.spotted_where.lat,
-                'spottedWhereLon': self.spotted_where.lon,
+                'spottedWhere': location,
                 'spottedWhen': self.spotted_when,
                 'image': self.image
+            }
+        else:
+            unicorn =  {
+                    'id': self.id,
+                    'name': self.name,
+                    'description': self.description,
+                    'reportedBy': self.reported_by,
+                    'spottedWhereName': self.spotted_where.name,
+                    'spottedWhereLat': self.spotted_where.lat,
+                    'spottedWhereLon': self.spotted_where.lon,
+                    'spottedWhen': self.spotted_when,
+                    'image': self.image
                 }
+                
+        return unicorn
